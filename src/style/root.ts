@@ -1,10 +1,12 @@
-import { css } from "@emotion/css";
-import { keySizes } from "./primitive";
+import { css } from "@emotion/react";
 
 export const root = css`
+  * {
+    font-family: "Raleway", sans-serif;
+  }
+
   #root {
     width: 100%;
-    max-width: ${keySizes.maxWidth};
     margin: 0 auto;
   }
 
