@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { render } from "react-dom";
-import { Global, css } from "@emotion/react";
+import { Global } from "@emotion/react";
 
 import { Router } from "router";
 import { reset } from "style/reset";

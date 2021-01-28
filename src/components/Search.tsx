@@ -61,7 +61,11 @@ const Button = styled.button`
   }
 `;
 
-export const Search: FC = () => {
+type SearchProps = {
+  onSearch(value: string): void;
+};
+
+export const Search: FC<SearchProps> = ({ onSearch }) => {
   const [value, setValue] = useState("");
 
   const updateValue = useCallback(
@@ -69,6 +73,13 @@ export const Search: FC = () => {
       setValue(event.target.value);
     },
     []
+  );
+
+  const onButtonClick = useCallback(
+    function onButtonClick() {
+      onSearch(value);
+    },
+    [onSearch, value]
   );
 
   return (
@@ -79,7 +90,9 @@ export const Search: FC = () => {
         onChange={updateValue}
         hasText={value.length > 0}
       />
-      <Button type="button">Catch it !</Button>
+      <Button type="button" onClick={onButtonClick}>
+        Catch it !
+      </Button>
     </Root>
   );
 };
