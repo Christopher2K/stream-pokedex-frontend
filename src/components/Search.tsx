@@ -20,7 +20,7 @@ const commonStyle = css`
   }
 `;
 
-const Root = styled.div`
+const Root = styled.form`
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -75,24 +75,32 @@ export const Search: FC<SearchProps> = ({ onSearch }) => {
     []
   );
 
-  const onButtonClick = useCallback(
-    function onButtonClick() {
+  const onFormSubmit = useCallback(
+    function onButtonClick(event: React.FormEvent<HTMLFormElement>) {
+      event.preventDefault();
       onSearch(value);
     },
     [onSearch, value]
   );
 
+  // const onEnterPressed = useCallback(
+  //   function onEnterPressed(event: React.KeyboardEvent<HTMLInputElement>) {
+  //     if (event.key === "Enter") {
+  //       onSearch(value);
+  //     }
+  //   },
+  //   [onSearch, value]
+  // );
+
   return (
-    <Root>
+    <Root onSubmit={onFormSubmit}>
       <Input
         placeholder="e.g. Pikachu"
         value={value}
         onChange={updateValue}
         hasText={value.length > 0}
       />
-      <Button type="button" onClick={onButtonClick}>
-        Catch it !
-      </Button>
+      <Button type="submit">Catch it !</Button>
     </Root>
   );
 };
