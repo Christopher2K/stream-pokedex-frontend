@@ -73,18 +73,6 @@ export const Home: FC = () => {
           {searchResults?.map((pokemon) => (
             <PokemonCard key={pokemon.id} pokemon={pokemon} />
           ))}
-          {searchResults?.map((pokemon) => (
-            <PokemonCard key={pokemon.id} pokemon={pokemon} />
-          ))}
-          {searchResults?.map((pokemon) => (
-            <PokemonCard key={pokemon.id} pokemon={pokemon} />
-          ))}
-          {searchResults?.map((pokemon) => (
-            <PokemonCard key={pokemon.id} pokemon={pokemon} />
-          ))}
-          {searchResults?.map((pokemon) => (
-            <PokemonCard key={pokemon.id} pokemon={pokemon} />
-          ))}
         </ResultsWrapper>
       )}
       {searchHasZeroResults && (
