@@ -4,6 +4,7 @@ export const colors = {
   middleBlueGreen: "#99E1D9",
   chocolateWeb: "#D56F3E",
   black: "#000000",
+  danger: "#E35930",
 };
 
 export const fontSize = {
