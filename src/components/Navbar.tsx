@@ -15,7 +15,7 @@ const Root = styled.nav`
 const Content = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
 
   width: 100%;
@@ -35,6 +35,9 @@ const StyledLink = styled(Link)`
   justify-content: flex-start;
   align-items: center;
 
+  color: white;
+  font-weight: bold;
+
   height: 100%;
   width: auto;
   padding: 0 10px;
@@ -43,12 +46,22 @@ const StyledLink = styled(Link)`
   }
 `;
 
+const MenuItemsContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+`;
+
 export const Navbar: FC = () => (
   <Root>
     <Content>
       <StyledLink to="/">
         <HomeIcon />
       </StyledLink>
+      <MenuItemsContainer>
+        <StyledLink to="/signup">Signup</StyledLink>
+      </MenuItemsContainer>
     </Content>
   </Root>
 );
