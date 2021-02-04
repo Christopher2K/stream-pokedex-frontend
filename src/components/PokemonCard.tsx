@@ -84,11 +84,16 @@ export const PokemonCard: FC<PokemonCardProps> = ({ pokemon }) => {
         <p>Generation: {generation}</p>
       </Header>
       <Content>
-        <img src={`/type_icons/Icon_${main_type}.webp`} alt={main_type} />
+        <img
+          src={`/type_icons/Icon_${main_type}.webp`}
+          alt={main_type}
+          title={main_type}
+        />
         {secondary_type && (
           <img
             src={`/type_icons/Icon_${secondary_type}.webp`}
             alt={secondary_type}
+            title={secondary_type}
           />
         )}
       </Content>
