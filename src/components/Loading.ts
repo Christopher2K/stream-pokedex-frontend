@@ -11,16 +11,17 @@ const loadingAnimation = keyframes`
   }
 `;
 
-export const Loading = styled.div`
+const DEFAULT_SIZE = 80;
+export const Loading = styled.div<{ size?: number }>`
   display: inline-block;
-  width: 80px;
-  height: 80px;
+  width: ${(props) => props.size ?? DEFAULT_SIZE}px;
+  height: ${(props) => props.size ?? DEFAULT_SIZE}px;
 
   &:after {
     content: " ";
     display: block;
-    width: 64px;
-    height: 64px;
+    width: ${(props) => (props.size ?? DEFAULT_SIZE) * 0.8}px;
+    height: ${(props) => (props.size ?? DEFAULT_SIZE) * 0.8}px;
     border-radius: 50%;
     border: 6px solid ${colors.chocolateWeb};
     border-color: ${colors.chocolateWeb} transparent ${colors.chocolateWeb}
