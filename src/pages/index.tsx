@@ -6,3 +6,4 @@ export { Signin } from "./Signin";
 export { Signup } from "./Signup";
 export { Team } from "./Team";
 export { TeamList } from "./TeamList";
+export { Logout } from "./Logout";

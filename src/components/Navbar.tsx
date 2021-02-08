@@ -5,6 +5,7 @@ import Color from "color";
 
 import { ReactComponent as PokeballsIcon } from "assets/icon/pokeballs.svg";
 import { colors, keySizes } from "style/primitive";
+import { useAuthentication } from "context/authentication";
 
 const Root = styled.nav`
   width: 100%;
@@ -51,17 +52,29 @@ const MenuItemsContainer = styled.div`
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
+  height: 100%;
 `;
 
-export const Navbar: FC = () => (
-  <Root>
-    <Content>
-      <StyledLink to="/">
-        <HomeIcon />
-      </StyledLink>
-      <MenuItemsContainer>
-        <StyledLink to="/signup">Signup</StyledLink>
-      </MenuItemsContainer>
-    </Content>
-  </Root>
-);
+export const Navbar: FC = () => {
+  const { user } = useAuthentication();
+
+  return (
+    <Root>
+      <Content>
+        <StyledLink to="/">
+          <HomeIcon />
+        </StyledLink>
+        <MenuItemsContainer>
+          {!user ? (
+            <>
+              <StyledLink to="/signup">Signup</StyledLink>
+              <StyledLink to="/signin">Signin</StyledLink>
+            </>
+          ) : (
+            <StyledLink to="/logout">Logout</StyledLink>
+          )}
+        </MenuItemsContainer>
+      </Content>
+    </Root>
+  );
+};

@@ -35,4 +35,13 @@ declare namespace Model {
     generation: number;
     legendary: boolean;
   };
+
+  type UserProfile = {
+    id: string;
+    username: string;
+  };
+
+  type AuthenticatedUser = UserProfile & {
+    firebaseId: string;
+  };
 }
