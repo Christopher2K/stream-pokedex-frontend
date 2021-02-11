@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 import { css } from "@emotion/react";
 import { colors } from "style/primitive";
 
-import { Button } from "components";
+import { Button, Pokeball } from "components";
 
 const centeredStyle = css`
   display: flex;
@@ -13,6 +13,8 @@ const centeredStyle = css`
 `;
 
 const Root = styled.div`
+  position: relative;
+
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -41,6 +43,23 @@ const Header = styled.header`
   }
 `;
 
+const LikeButton = styled.button`
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+
+  padding: 5px;
+
+  border: none;
+  background-color: transparent;
+
+  svg {
+    width: 30px;
+    height: auto;
+  }
+`;
+
 const Content = styled.div`
   display: flex;
   flex-direction: row;
@@ -66,10 +85,18 @@ const Footer = styled.header`
 
 export type PokemonCardProps = {
   pokemon: Model.Pokemon;
+  showFavoriteButton: boolean;
+  onFavoriteClicked(pokemonId: string): void;
+  inUserFavList: boolean;
 };
 
-export const PokemonCard: FC<PokemonCardProps> = ({ pokemon }) => {
-  const { name, generation, main_type, secondary_type } = pokemon;
+export const PokemonCard: FC<PokemonCardProps> = ({
+  pokemon,
+  showFavoriteButton,
+  onFavoriteClicked,
+  inUserFavList,
+}) => {
+  const { id, name, generation, main_type, secondary_type } = pokemon;
   const imageUrl = useMemo(
     () =>
       `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.number}.png`,
@@ -98,8 +125,15 @@ export const PokemonCard: FC<PokemonCardProps> = ({ pokemon }) => {
         )}
       </Content>
       <Footer>
-        <Button>Show me more</Button>
+        <Button type="button" onClick={() => window.alert("Not implemented")}>
+          Show me more
+        </Button>
       </Footer>
+      {showFavoriteButton && (
+        <LikeButton type="button" onClick={() => onFavoriteClicked(id)}>
+          <Pokeball $enabled={inUserFavList} />
+        </LikeButton>
+      )}
     </Root>
   );
 };

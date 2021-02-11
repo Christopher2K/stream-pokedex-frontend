@@ -7,6 +7,7 @@ import { Router } from "router";
 import { reset } from "style/reset";
 import { root } from "style/root";
 import { AuthenticationContextProvider } from "context/authentication";
+import { FavoriteContextProvider } from "context/favorite";
 
 var firebaseConfig = {
   apiKey: "AIzaSyAVWVeUhdk24caKi6QS3a2EabC3u7by4dk",
@@ -22,9 +23,11 @@ firebase.initializeApp(firebaseConfig);
 export const App: FC = () => (
   <div>
     <AuthenticationContextProvider>
-      <Global styles={root} />
-      <Global styles={reset} />
-      <Router />
+      <FavoriteContextProvider>
+        <Global styles={root} />
+        <Global styles={reset} />
+        <Router />
+      </FavoriteContextProvider>
     </AuthenticationContextProvider>
   </div>
 );

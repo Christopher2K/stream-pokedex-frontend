@@ -44,4 +44,9 @@ declare namespace Model {
   type AuthenticatedUser = UserProfile & {
     firebaseId: string;
   };
+
+  type Favorite = {
+    id: string;
+    pokemon: Pokemon;
+  };
 }

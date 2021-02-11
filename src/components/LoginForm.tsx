@@ -7,6 +7,7 @@ import { colors, fontSize } from "style/primitive";
 import { login } from "services/authentication";
 import { Loading } from "./Loading";
 import { useAuthentication } from "context/authentication";
+import { useHistory } from "react-router";
 
 const Container = styled.form`
   margin: auto 0;
@@ -78,6 +79,7 @@ export type LoginFormData = {
 };
 
 export const LoginForm: FC = () => {
+  const history = useHistory();
   const { setUser, setIdToken } = useAuthentication();
   const [formData, setFormData] = useState<LoginFormData>({
     password: "",
@@ -96,13 +98,13 @@ export const LoginForm: FC = () => {
         const authenticatedUser = await login(formData);
         setUser(authenticatedUser.user);
         setIdToken(authenticatedUser.idToken);
+        history.push("/");
       } catch (e) {
         setError(e.message ?? "Server error, try again later");
-      } finally {
         setLoading(false);
       }
     },
-    [formData, setUser]
+    [formData, setUser, setIdToken, history]
   );
 
   const onInputValueChange = useCallback(
