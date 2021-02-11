@@ -78,7 +78,7 @@ export type LoginFormData = {
 };
 
 export const LoginForm: FC = () => {
-  const { setUser } = useAuthentication();
+  const { setUser, setIdToken } = useAuthentication();
   const [formData, setFormData] = useState<LoginFormData>({
     password: "",
     email: "",
@@ -94,7 +94,8 @@ export const LoginForm: FC = () => {
 
       try {
         const authenticatedUser = await login(formData);
-        setUser(authenticatedUser);
+        setUser(authenticatedUser.user);
+        setIdToken(authenticatedUser.idToken);
       } catch (e) {
         setError(e.message ?? "Server error, try again later");
       } finally {

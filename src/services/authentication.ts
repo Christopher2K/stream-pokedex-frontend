@@ -26,7 +26,7 @@ export async function signup(formData: SignupFormData) {
 
 export async function login(
   formData: LoginFormData
-): Promise<Model.AuthenticatedUser> {
+): Promise<{ user: Model.AuthenticatedUser; idToken: string }> {
   const defaultError = new Error("Cannot sign in right now.");
 
   try {
@@ -42,8 +42,11 @@ export async function login(
     const profile = await getProfile(idToken);
 
     return {
-      firebaseId: credentials.user.uid,
-      ...profile,
+      idToken,
+      user: {
+        firebaseId: credentials.user.uid,
+        ...profile,
+      },
     };
   } catch (e) {
     if (e.code) {

@@ -14,7 +14,9 @@ import { getProfile } from "services/authentication";
 
 type AuthenticationContextData = {
   user: Model.AuthenticatedUser | undefined;
+  idToken: string | undefined;
   setUser: Dispatch<SetStateAction<Model.AuthenticatedUser | undefined>>;
+  setIdToken: Dispatch<SetStateAction<string | undefined>>;
   loadingInitialAuth: boolean;
 };
 
@@ -26,6 +28,7 @@ export const AuthenticationContextProvider: FC = ({ children }) => {
   const [user, setUser] = useState<Model.AuthenticatedUser | undefined>(
     undefined
   );
+  const [idToken, setIdToken] = useState<string | undefined>();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -36,6 +39,10 @@ export const AuthenticationContextProvider: FC = ({ children }) => {
         } else {
           user
             .getIdToken()
+            .then((idToken) => {
+              setIdToken(idToken);
+              return idToken;
+            })
             .then(getProfile)
             .then((profile) => {
               setUser({
@@ -54,7 +61,9 @@ export const AuthenticationContextProvider: FC = ({ children }) => {
     <AuthenticationContext.Provider
       value={{
         user,
+        idToken,
         setUser,
+        setIdToken,
         loadingInitialAuth: loading,
       }}
     >
