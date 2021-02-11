@@ -14,7 +14,7 @@ export const Router: FC = () => {
           <Route exact path="/logout" component={Pages.Logout} />
           <Switch>
             <Route exact path="/" component={Pages.Home} />
-            <Route exact path="/favoris" component={Pages.Favorite} />
+            <Route exact path="/favorites" component={Pages.Favorite} />
             <Route exact path="/pokemon" component={Pages.Pokemon} />
             <Route exact path="/signin" component={Pages.Signin} />
             <Route exact path="/signup" component={Pages.Signup} />

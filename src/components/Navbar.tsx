@@ -71,7 +71,10 @@ export const Navbar: FC = () => {
               <StyledLink to="/signin">Signin</StyledLink>
             </>
           ) : (
-            <StyledLink to="/logout">Logout</StyledLink>
+            <>
+              <StyledLink to="/favorites">Favorites</StyledLink>
+              <StyledLink to="/logout">Logout</StyledLink>
+            </>
           )}
         </MenuItemsContainer>
       </Content>
